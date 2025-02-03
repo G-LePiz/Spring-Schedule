@@ -117,7 +117,11 @@ public class ScheduleRepositoryImpl implements ScheduleRepository{
 
         return jdbcTemplate.queryForObject(
                 "select * from calendar where id = ?",
-                (rs, rowNum) -> new Schedule(rs.getLong("id"), rs.getString("todo"), rs.getString("user"), rs.getTimestamp("createDate").toLocalDateTime(), rs.getTimestamp("updateDate").toLocalDateTime()),
+                (rs, rowNum) -> new Schedule(rs.getLong("id"),
+                        rs.getString("todo"),
+                        rs.getString("user"),
+                        rs.getTimestamp("createDate").toLocalDateTime(),
+                        rs.getTimestamp("updateDate").toLocalDateTime()),
                 id
         );
     }

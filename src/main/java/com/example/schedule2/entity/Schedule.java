@@ -19,8 +19,6 @@ public class Schedule {
         this.todo = todo;
         this.user = user;
         this.password = password;
-//        this.createDate = createDate;
-//        this.updateDate = updateDate;
     }
 
     public Schedule(Long id, String todo, String user, LocalDateTime createDate, LocalDateTime updateDate) {
