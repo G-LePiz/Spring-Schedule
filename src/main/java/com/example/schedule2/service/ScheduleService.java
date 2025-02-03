@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +37,8 @@ public class ScheduleService {
     }
 
     @Transactional(readOnly = true)
-    public List<ScheduleResponseDto> getSchedules(){ // 전체 일정 조회
-        List<Schedule> scheduleList = scheduleRepository.findAllSchedule();
+    public List<ScheduleResponseDto> getSchedules(LocalDate updateDate, String username){ // 전체 일정 조회
+        List<Schedule> scheduleList = scheduleRepository.findAllSchedule(updateDate, username);
 
         List<ScheduleResponseDto> scheduleResponseDtoList = new ArrayList<>();
         for(Schedule schedule : scheduleList){

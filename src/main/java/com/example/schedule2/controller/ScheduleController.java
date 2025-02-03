@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,17 +23,18 @@ public class ScheduleController {
         return ResponseEntity.ok(scheduleService.saveDto(requestDto, currentDateTimeNow));
     }
 
-    @GetMapping("/shcedules/{id}") // 일정 단건 조회
+    @GetMapping("/schedules/{id}") // 일정 단건 조회
     public ResponseEntity<ScheduleResponseDto> findScheduleById(@PathVariable Long id){
         return ResponseEntity.ok(scheduleService.getSchedule(id));
     }
 
     @GetMapping("/schedules") // 일정 전체 조회
-    public ResponseEntity<List<ScheduleResponseDto>> findAllSchedule(){
-        return ResponseEntity.ok(scheduleService.getSchedules());
+    public ResponseEntity<List<ScheduleResponseDto>> findAllSchedule(@RequestParam LocalDate updateDate,
+                                                                     @RequestParam String username){
+        return ResponseEntity.ok(scheduleService.getSchedules(updateDate, username));
     }
 
-    @PutMapping("/shcedules/{id}") // 일정 수정
+    @PutMapping("/schedules/{id}") // 일정 수정
     public ResponseEntity<ScheduleResponseDto> updateSchedule(@PathVariable Long id,
                                                               @RequestBody ScheduleRequestDto requestDto){
         LocalDateTime updateNow = LocalDateTime.now();
@@ -40,9 +42,9 @@ public class ScheduleController {
         return ResponseEntity.ok(scheduleService.updateSchedule(id, requestDto, updateNow));
     }
 
-    @DeleteMapping("/shcedules/{id}") // 일정 삭제
-    public void deleteSchedule(@PathVariable Long id, @RequestBody String password){
-        scheduleService.deleteSchedule(id, password);
+    @DeleteMapping("/schedules/{id}") // 일정 삭제
+    public void deleteSchedule(@PathVariable Long id, @RequestBody ScheduleRequestDto requestDto){
+        scheduleService.deleteSchedule(id, requestDto);
     }
 
 }
