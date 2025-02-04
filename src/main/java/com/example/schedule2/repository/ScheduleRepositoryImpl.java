@@ -80,9 +80,9 @@ public class ScheduleRepositoryImpl implements ScheduleRepository{
         // 클라이언트에서 들어온값 : 2025-02-03
         //
         if (updateDate != null && (username != null && !username.isBlank())){ // 둘다 있을때
-            sql += "WHERE DATE(updateDate) =:updateDate AND user =:username";
+            sql += "WHERE DATE(updateDate) =:updateDate AND user =:username ";
         }else if(updateDate != null && (username == null || username.isBlank())){ // updateDate만 있을때
-            sql += "WHERE DATE(updateDate) =:updateDate";
+            sql += "WHERE DATE(updateDate) =:updateDate ";
         } else if(updateDate == null && (username != null && username.isBlank())){ // username만 있을때
             sql += "WHERE user =:username ";
         }
