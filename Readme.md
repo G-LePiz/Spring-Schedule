@@ -14,6 +14,16 @@
 ## ERD
 ![ERD](images/ERD.png)
 
+## SQL
+>>create table calendar (</br>
+>id int auto_increment primary key,</br>
+>todo varchar(255) not null,</br>
+user varchar(100) not null,</br>
+password varchar(100) not null,</br>
+createDate timestamp default current_timestamp,</br>
+updateDate timestamp default current_timestamp on update current_timestamp</br>
+>>);
+
 # 📱 일정관리 앱을 만들어보자!
 Spring을 처음 배우고 낮설어하는 개발자를 위해, 직접 개발하면서 Spring에 한 발자국을 다가갈 수 있는 과제입니다. 이 과제를 통해서 3-Layer Architecture에 대해서 익숙해질 수 있고 무엇보다 가장 중요한 CURD에 대해서 쉽게 이해할 수 있습니다!
 
